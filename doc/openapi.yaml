@@ -1,0 +1,117 @@
+paths:
+
+  /v1/baratie/marmitas:
+    get:
+      tags:
+        - Usuario
+
+      summary: Lista todas as refeições
+      description: Retorna todas as refeições cadastradas no catálogo.
+
+      responses:
+        '200':
+          description: Lista retornada com sucesso
+
+  /v1/baratie/marmita/{id}:
+    get:
+      tags:
+        - Usuario
+
+      summary: Visualiza uma refeição específica
+      description: Retorna os detalhes de uma refeição.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: Refeição encontrada
+
+        '404':
+          description: Refeição não encontrada
+
+  /v1/baratie/pesquisa:
+    get:
+      tags:
+        - Usuario
+
+      summary: Pesquisa refeições pelo nome
+
+      parameters:
+        - name: nome
+          in: query
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: Pesquisa realizada com sucesso
+
+  /v1/baratie/filtro:
+    get:
+      tags:
+        - Usuario
+
+      summary: Filtra refeições por nutrientes e calorias
+
+      parameters:
+
+        - name: calorias
+          in: query
+          schema:
+            type: number
+
+        - name: proteinas
+          in: query
+          schema:
+            type: number
+
+        - name: carboidratos
+          in: query
+          schema:
+            type: number
+
+        - name: lipideos
+          in: query
+          schema:
+            type: number
+
+        - name: ordem
+          in: query
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+
+      responses:
+        '200':
+          description: Filtro realizado com sucesso
+
+  /v1/baratie/restricoes:
+    get:
+      tags:
+        - Usuario
+
+      summary: Filtra refeições por restrições alimentares
+
+      parameters:
+
+        - name: lactose
+          in: query
+          schema:
+            type: boolean
+
+        - name: gluten
+          in: query
+          schema:
+            type: boolean
+
+      responses:
+        '200':
+          description: Consulta realizada com sucesso
